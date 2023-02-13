@@ -1,0 +1,92 @@
+#include < stdio.h >
+#include < stdlib.h >
+#include < string.h >
+#include < stdio_ext.h >
+
+typedef  struct sanduíche
+{
+    char nome[ 30 ];
+    duplo valor;
+    peso flutuante ;
+    avaliação int ;
+} sanduíche;
+
+sanduiche * aloca_vetor_sanduiche ( int n);
+void  preencha_sanduiche (sanduiche * a);
+
+int  principal ()
+{
+    int n,i;
+    sanduiche * sanduíches;
+    int indice_melhor_avaliado= 0 ;
+    float som_peso= 0 ,som_valor= 0.0 ;
+
+    printf ( " \n Digite a quantidade de sanduíches: " );
+    scanf ( " %d " ,&n);
+
+    sanduíches = aloca_vetor_sanduíches (n);
+
+    para (i= 0 ;i<n;i++)
+    {
+        preencha_sanduiche (&sanduiche[i]);
+
+        if (sanduíches[i]. nome [ 0 ]== ' a ' || sanduíches[i]. nome [ 0 ]== ' A ' )
+        {
+            printf ( " \n %s comeca com a " ,sanduíches[i]. nome );
+        }
+
+        if (sanduíches[i]. avaliação > sanduíches[indice_melhor_avaliado]. avaliação )
+        {
+            índice_melhor_avaliado = i;
+        }
+
+        som_peso = som_peso + sanduiches[i]. peso ;
+        som_valor = som_valor + sanduiches[i]. valor ;
+        printf ( " \n Somatorio ate o momento = %lf " ,som_valor);
+
+    }
+
+    printf ( " \n O sanduiche melhor avaliado e o %s com avaliação %d " ,sanduiches[indice_melhor_avaliado]. nome ,sanduiches[indice_melhor_avaliado]. avaliação );
+    printf ( " \n Peso medio sanduíches = %f " ,som_peso/n);
+    printf ( " \n Valor total da compra: %lf " ,som_valor* 3.0 );
+
+    printf ( " \n " );
+    retorna  0 ;
+}
+
+sanduíche * aloca_vetor_sanduíches ( int n)
+{
+    int eu;
+    sanduiche * novo;
+
+    // novo = (sanduiche*)calloc(n,sizeof(sanduiche));
+
+    novo = (sanduiche*) malloc ( sizeof (sanduiche)*n);
+
+    para (i= 0 ;i<n;i++)
+    {
+        strcpy (novo[i]. nome , " \0 " );
+        novo[i]. peso = 0 ;
+        novo[i]. valor = 0 ;
+        novo[i]. avaliação = 0 ;
+    }
+
+
+    
+    retornar novo;
+}
+
+void  preenche_sanduiche (sanduíche * a)
+{
+    printf ( " \n Digite o nome do sanduiche: " );
+    // fflush(stdin); janelas;
+    __fpurge (stdin);
+    fgets (a-> nome , 30 ,stdin);
+    printf ( " \n Digite o valor do sanduiche: " );
+    scanf ( " %lf " ,&a-> valor );
+    printf ( " \n Digite o peso do sanduiche: " );
+    scanf ( " %f " ,&a-> peso );
+    printf ( " \n Digite a avaliação do sanduiche: " );
+    scanf ( " %d " ,&a-> avaliação );
+
+}
